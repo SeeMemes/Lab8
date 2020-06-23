@@ -3,9 +3,9 @@ package Server.Database;
 public class SqlQuery {
     public static class Get {
         //humanBeing
-        public static final String HUMANBEING = "SELECT humanBeing.id, humanBeing.name, coordinates.x, coordinates.y, humanBeing.realHero, humanBeing.hasToothPick, humanBeing.impactSpeed, humanBeing.weaponType, humanBeing.mood, humanBeing.car\n" +
+        public static final String HUMANBEING = "SELECT id, name, x, y, realHero, hasToothPick, impactSpeed, weaponType, mood, car\n" +
                 "FROM humanBeing\n" +
-                "    INNER JOIN coordinates ON humanBeing.id = coordinates.humanBeing_id\n";
+                "    INNER JOIN coordinates ON id = coordinates.humanBeing_id\n";
 
         public static final String HUMAN_BY_ID = "SELECT id FROM HUMANBEING where id = ?";
 

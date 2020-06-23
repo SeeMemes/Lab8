@@ -3,12 +3,10 @@ package Server.NewServer;
 import Server.Database.Credentials;
 import Server.Database.CurrentUser;
 import Server.Database.DatabaseController;
-import Server.SocketServer.CollectionManager;
 import Server.Command.*;
 import Server.MyOwnClasses.HumanBeing;
 import Server.MyOwnClasses.HumanList;
 import Client.ServerRequest;
-import Server.Tools.Converter;
 
 import java.io.*;
 import java.net.Socket;
@@ -20,12 +18,6 @@ import static Server.Database.UserDBManager.DEFAULT_USERNAME;
 import static Server.Tools.AppConstant.DEFAULT_PASSWORD;
 
 
-/**
- * Класс {@code ServerConnection} представляет объект сервера, который манипулирует {@link CollectionManager}.
- * @author Провоторов Александр
- * @version 1.2
- * @since 31.05.20
- */
 public class ServerConnection implements Runnable {
 
     private CollectionHandler serverCollection;
@@ -80,29 +72,6 @@ public class ServerConnection implements Runnable {
             CurrentUser currentUser;
             while (true) {
                 try {
-                    Thread server_helper = new Thread(() -> {
-                        while (true){
-                            try {
-                                System.out.println("Command_in: ");
-                                String command = bufferedReader.readLine();
-                                if (!command.toLowerCase().equals("login")&&!command.toLowerCase().equals("register")) {
-                                    try {
-                                        System.out.println(commandList.get(command).execute(serverCollection.getHuman(),
-                                                command, serverCollection.getHumans(), true));
-                                    } catch (ClassCastException e) {
-                                        commandList.get(command).execute(serverCollection.getHuman(),
-                                                command, serverCollection.getHumans(), true);
-                                        System.out.println("Команда " + command + " выполнена.");
-                                    }
-                                }
-                                else System.out.println("Недоступная серверу команда");
-                            } catch (InterruptedIOException e) {
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-                    server_helper.start();
                     ServerRequest requestFromClient = (ServerRequest) getFromClient.readObject();
 
                     currentUser = requestFromClient.getCurrentUser();
