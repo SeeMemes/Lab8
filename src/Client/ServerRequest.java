@@ -1,7 +1,6 @@
 package Client;
 
 import Server.Database.Credentials;
-import Server.Database.CurrentUser;
 
 import java.io.Serializable;
 
@@ -11,20 +10,13 @@ public class ServerRequest implements Serializable {
 
     String command;
     String arguments;
-    CurrentUser currentUser;
 
-    public ServerRequest(String command, String arguments, CurrentUser currentUser){
+    Credentials credentials;
+
+    public ServerRequest(String command, String arguments, Credentials credentials){
         this.command = command;
         this.arguments = arguments;
-        this.currentUser = currentUser;
-    }
-
-    public CurrentUser getCurrentUser() {
-        return currentUser;
-    }
-
-    public void setCurrentUser(CurrentUser currentUser) {
-        this.currentUser = currentUser;
+        this.credentials = credentials;
     }
 
     public String getCommand() {
@@ -42,6 +34,8 @@ public class ServerRequest implements Serializable {
     public void setArguments(String arguments) {
         this.arguments = arguments;
     }
+
+    public Credentials getCredentials() { return credentials; }
 
     @Override
     public String toString() {

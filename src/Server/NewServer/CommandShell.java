@@ -5,10 +5,13 @@ package Server.NewServer; /**
  */
 
 import Server.Command.*;
+import Server.Database.Credentials;
+import Server.Database.DataBase;
 import Server.Exceptions.HumanValueException;
 import Server.MyOwnClasses.HumanBeing;
 import Server.MyOwnClasses.HumanList;
 
+import java.sql.SQLException;
 import java.util.*;
 
 public class CommandShell {
@@ -34,11 +37,13 @@ public class CommandShell {
         commandList.put("print_field_descending_mood", new PrintFieldDescendingMood(human, command, humanList));
         try {
             String token = tokenizer.nextToken();
-            human = (LinkedHashMap<Integer, HumanBeing>) commandList.get(token.toLowerCase()).execute(human, command, humanList, b);
+            human = (LinkedHashMap<Integer, HumanBeing>) commandList.get(token.toLowerCase()).execute(human, command, humanList, new Credentials(0, "-1", "-1"), new DataBase(), b);
         } catch (StringIndexOutOfBoundsException e) { System.out.println("Команда была введена неверно"); }
         catch (ArithmeticException e) { System.out.println("Лист HumanList пуст"); }
         catch (NullPointerException e) { System.out.println("Команда была введена неверно"); }
-        catch (HumanValueException e) { System.out.println("Введите правильный тип данных"); }
+        catch (HumanValueException e) { System.out.println("Введите правильный тип данных"); } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return human;
     }
 }

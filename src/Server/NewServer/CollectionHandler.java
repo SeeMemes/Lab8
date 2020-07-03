@@ -1,5 +1,6 @@
 package Server.NewServer;
 
+import Server.Database.DataBase;
 import Server.Database.DatabaseController;
 import Server.Exceptions.ExistanceException;
 import Server.Exceptions.HumanValueException;
@@ -26,14 +27,16 @@ public final class CollectionHandler {
     private static HumanList humanList = new HumanList();
     private static LinkedHashMap<Integer, HumanBeing> human = new LinkedHashMap<Integer, HumanBeing>();
     private Date initDate;
+    private DataBase dataBase;
 
 
-    public CollectionHandler(DatabaseController databaseController) {
+    public CollectionHandler(DataBase dataBase) {
 
         try {
-            this.humanList.setHumanBeings(Converter.convertToList(databaseController.getCollectionFromDB()));
+            this.humanList.setHumanBeings(Converter.convertToList(dataBase.updateHumanBeings()));
             this.humanList.setCreationDate(LocalDateTime.now());
-            this.human = databaseController.getCollectionFromDB();
+            this.human = dataBase.updateHumanBeings();
+            this.dataBase = dataBase;
         } catch (SQLException e){
             System.out.println("Ошибка с базой данных");
         }
@@ -58,6 +61,10 @@ public final class CollectionHandler {
     }
 
     public void setHuman(LinkedHashMap<Integer, HumanBeing> human) { this.human = human; }
+
+    public DataBase getDataBase() {
+        return dataBase;
+    }
 
     public HumanList getHumans(){
         return humanList;

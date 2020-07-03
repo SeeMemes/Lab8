@@ -11,8 +11,10 @@ public class AppConstant {
 
     public final static String VERSION = "0.3";
 
-    public final static String DB_URL = "jdbc:postgresql://localhost:5432/postgres";
-    public final static String DB_USER = "postgres";
-    public final static String DB_PASS = "12345";
+    public final static String DB_URL = "jdbc:postgresql://pg:5432/studs";
+    public final static String DB_DEFAULT_USER = "postgres";
+    public final static String DB_DEFAULT_PASSWORD = "12345";
+    public final static String DB_USER = "s284695";
+    public final static String DB_PASS = "hho582";
 
 }

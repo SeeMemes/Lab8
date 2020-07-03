@@ -1,5 +1,7 @@
 package Server.Command;
 
+import Server.Database.Credentials;
+import Server.Database.DataBase;
 import Server.NewServer.CommandShell;
 import Server.MyOwnClasses.HumanBeing;
 import Server.MyOwnClasses.HumanList;
@@ -15,7 +17,7 @@ public class ExecuteScript extends Command {
     }
 
     @Override
-    public LinkedHashMap<Integer, HumanBeing> execute (LinkedHashMap<Integer, HumanBeing> human, String command, HumanList humanList, boolean b){
+    public LinkedHashMap<Integer, HumanBeing> execute (LinkedHashMap<Integer, HumanBeing> human, String command, HumanList humanList, Credentials credentials, DataBase dataBase, boolean b){
         CommandShell commandShell = new CommandShell();
         try{
             StringTokenizer tokenizer = new StringTokenizer(command);

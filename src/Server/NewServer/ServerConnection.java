@@ -1,7 +1,6 @@
-package Server.NewServer;
+/*package Server.NewServer;
 
 import Server.Database.Credentials;
-import Server.Database.CurrentUser;
 import Server.Database.DatabaseController;
 import Server.Command.*;
 import Server.MyOwnClasses.HumanBeing;
@@ -51,9 +50,6 @@ public class ServerConnection implements Runnable {
         this.commandList = commandList;
     }
 
-    /**
-     * Запускает активное соединение с клиентом в новом {@link Thread}.
-     */
     @Override
     public void run() {
 
@@ -69,7 +65,7 @@ public class ServerConnection implements Runnable {
                     return "Неизвестная команда. Введите 'help' для получения списка команд.";
                 }
             };
-            CurrentUser currentUser;
+            Credentials credentials;
             while (true) {
                 try {
                     ServerRequest requestFromClient = (ServerRequest) getFromClient.readObject();
@@ -153,4 +149,4 @@ public class ServerConnection implements Runnable {
                 ", commandList=" + commandList +
                 '}';
     }
-}
+}*/

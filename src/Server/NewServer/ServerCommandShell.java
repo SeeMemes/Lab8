@@ -1,30 +1,23 @@
 package Server.NewServer;
 
-import Client.ServerRequest;
 import Server.Command.*;
 import Server.Database.Credentials;
-import Server.Database.CurrentUser;
+import Server.Database.DataBase;
 import Server.Database.DatabaseController;
 import Server.MyOwnClasses.HumanBeing;
 import Server.MyOwnClasses.HumanList;
 
 import java.io.*;
-import java.net.Socket;
-import java.net.SocketException;
-import java.sql.SQLOutput;
 import java.util.*;
-
-import static Server.Database.UserDBManager.DEFAULT_USERNAME;
-import static Server.Tools.AppConstant.DEFAULT_PASSWORD;
 
 public class ServerCommandShell implements Runnable{
     private CollectionHandler serverCollection;
-    private DatabaseController databaseController;
+    private DataBase dataBase;
     private HashMap<String, Command> commandList = new LinkedHashMap<>();
 
-    ServerCommandShell(DatabaseController databaseController) {
-        this.serverCollection = new CollectionHandler(databaseController);
-        this.databaseController = databaseController;
+    public ServerCommandShell(DataBase dataBase) {
+        this.serverCollection = new CollectionHandler(dataBase);
+        this.dataBase = dataBase;
         LinkedHashMap<String, Command> commandList = new LinkedHashMap<>();
         HumanList humanList = serverCollection.getHumans();
         LinkedHashMap<Integer, HumanBeing> human = serverCollection.getHuman();
@@ -85,13 +78,13 @@ public class ServerCommandShell implements Runnable{
                             try {
                                 LinkedHashMap<Integer, HumanBeing> humanMap = (LinkedHashMap<Integer, HumanBeing>) commandList.getOrDefault(parsedCommand[0], errorCommand).execute(
                                         serverCollection.getHuman(), commandRequest,
-                                        serverCollection.getHumans(), true);
+                                        serverCollection.getHumans(), new Credentials(0, "-1", "-1"), dataBase, true);
                                 serverCollection.setHuman(humanMap);
                                 System.out.println(command_answer);
                             } catch (ClassCastException e) {
                                 command_answer = (String) commandList.getOrDefault(parsedCommand[0], errorCommand).execute(
                                         serverCollection.getHuman(), commandRequest,
-                                        serverCollection.getHumans(), true);
+                                        serverCollection.getHumans(), new Credentials(0, "-1", "-1"), dataBase, true);
                                 System.out.println(command_answer);
                             }
                             break;

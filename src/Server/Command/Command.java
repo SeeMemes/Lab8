@@ -1,10 +1,10 @@
 package Server.Command;
 
 import Server.Database.Credentials;
+import Server.Database.DataBase;
 import Server.Database.DatabaseController;
 import Server.MyOwnClasses.HumanBeing;
 import Server.MyOwnClasses.HumanList;
-import Server.MyOwnClasses.HumanBeing;
 
 import java.util.LinkedHashMap;
 import java.util.StringTokenizer;
@@ -23,13 +23,13 @@ public abstract class Command {
     }
     public Command() {}
 
-    public Object execute (LinkedHashMap<Integer, HumanBeing> human, String command, HumanList humanList, boolean b){
+    public Object execute (LinkedHashMap<Integer, HumanBeing> human, String command, HumanList humanList, Credentials credentials, DataBase dataBase, boolean b){
         return human;
     }
 
     public String execute(){return "Недостаточное кол-во данных";}
 
-    public Boolean execute (DatabaseController databaseController, Credentials credentials){
+    public Boolean execute (DataBase dataBase, DatabaseController databaseController, Credentials credentials){
         boolean registered = false;
         return registered;
     }

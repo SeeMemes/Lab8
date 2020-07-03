@@ -1,5 +1,7 @@
 package Server.Command;
 
+import Server.Database.Credentials;
+import Server.Database.DataBase;
 import Server.MyOwnClasses.HumanBeing;
 import Server.MyOwnClasses.HumanList;
 
@@ -13,7 +15,7 @@ public class SumOfImpactSpeed extends Command {
     }
 
     @Override
-    public String execute (LinkedHashMap<Integer, HumanBeing> human, String command, HumanList humanList, boolean b){
+    public String execute (LinkedHashMap<Integer, HumanBeing> human, String command, HumanList humanList, Credentials credentials, DataBase dataBase, boolean b){
         /*int k = 0;
         for (int i = 0; i < humanList.getHumanBeings().size(); i++)
             k += humanList.getHumanBeing(i).getImpactSpeed();*/

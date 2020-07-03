@@ -1,5 +1,7 @@
 package Server.Command;
 
+import Server.Database.Credentials;
+import Server.Database.DataBase;
 import Server.MyOwnClasses.HumanBeing;
 import Server.MyOwnClasses.HumanList;
 
@@ -11,9 +13,10 @@ public class Clear extends Command {
     }
 
     @Override
-    public LinkedHashMap<Integer, HumanBeing> execute (LinkedHashMap<Integer, HumanBeing> human, String command, HumanList humanList, boolean b){
-        LinkedHashMap<Integer, HumanBeing> linkedHashMap = new LinkedHashMap<Integer, HumanBeing>();
+    public LinkedHashMap<Integer, HumanBeing> execute (LinkedHashMap<Integer, HumanBeing> human, String command, HumanList humanList, Credentials credentials, DataBase dataBase, boolean b){
+        for (int i = 0; i < human.size(); i++)
+            human = new RemoveKey(human, command, humanList).execute(human, "remove " + i,humanList,credentials,dataBase,b);
         System.out.println("Очистка произведена");
-        return linkedHashMap;
+        return human;
     }
 }

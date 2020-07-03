@@ -11,6 +11,10 @@ public class Car {
 
     public Car () {}
 
+    public Car (boolean b) {
+        cool = b;
+    }
+
     @XmlElement
     public boolean isCool() { return cool; }
     public void setCool(boolean cool) { this.cool = cool; }

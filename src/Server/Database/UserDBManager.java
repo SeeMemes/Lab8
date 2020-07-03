@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class UserDBManager {
 
@@ -43,20 +44,31 @@ public class UserDBManager {
         final boolean oldAutoCommit = connection.getAutoCommit();
         try {
             connection.setAutoCommit(false);
-            PreparedStatement preparedStatement = connection.prepareStatement(SqlQuery.Add.USER);
-            int pointer = 0;
-            preparedStatement.setString(++pointer, credentials.username);
-            preparedStatement.setString(++pointer, hashPassword(credentials.password));
-            preparedStatement.executeUpdate();
 
-            preparedStatement = connection.prepareStatement(SqlQuery.Get.ID_USING_USERNAME);
-            pointer = 0;
-            preparedStatement.setString(++pointer, credentials.username);
-            ResultSet rs = preparedStatement.executeQuery();
-            if (rs.next())
-                return rs.getInt(1);
+            PreparedStatement stmt = connection.prepareStatement("select * from users");
+            ArrayList<String> usersNamesa = new ArrayList<>();
+            stmt.execute();
+            ResultSet rss = stmt.getResultSet();
+            while (rss.next()) {
+                usersNamesa.add(rss.getString("name"));
+            }
+            if (!usersNamesa.contains(credentials.getUsername())) {
+                PreparedStatement preparedStatement = connection.prepareStatement(SqlQuery.Add.USER);
+                int pointer = 0;
+                preparedStatement.setString(++pointer, credentials.username);
+                preparedStatement.setString(++pointer, hashPassword(credentials.password));
+                preparedStatement.executeUpdate();
 
-            connection.commit();
+                preparedStatement = connection.prepareStatement(SqlQuery.Get.ID_USING_USERNAME);
+                pointer = 0;
+                preparedStatement.setString(++pointer, credentials.username);
+                ResultSet rs = preparedStatement.executeQuery();
+                if (rs.next())
+                    return rs.getInt(1);
+
+                connection.commit();
+            }
+            else return -1;
         } catch (Throwable e) {
             connection.rollback();
             throw e;

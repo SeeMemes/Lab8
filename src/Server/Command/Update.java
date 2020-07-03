@@ -1,5 +1,7 @@
 package Server.Command;
 
+import Server.Database.Credentials;
+import Server.Database.DataBase;
 import Server.Exceptions.HumanValueException;
 import Server.MyOwnClasses.HumanBeing;
 import Server.MyOwnClasses.HumanList;
@@ -8,6 +10,7 @@ import Server.Tools.Converter;
 import Server.enums.Mood;
 import Server.enums.WeaponType;
 
+import java.sql.SQLException;
 import java.util.*;
 
 public class Update extends Command {
@@ -16,15 +19,15 @@ public class Update extends Command {
     }
 
     @Override
-    public LinkedHashMap<Integer, HumanBeing> execute (LinkedHashMap<Integer, HumanBeing> human, String command, HumanList humanList, boolean b){
+    public LinkedHashMap<Integer, HumanBeing> execute (LinkedHashMap<Integer, HumanBeing> human, String command, HumanList humanList, Credentials credentials, DataBase dataBase, boolean b){
         StringTokenizer tokenizer = new StringTokenizer(command);
         tokenizer.nextToken();
+        tokenizer.nextToken();
         int id = Integer.parseInt(tokenizer.nextToken());
-        for (int i = 0; i < humanList.getHumanBeings().size(); i++) {
-            if (humanList.getHumanBeings().get(i).getId() == id) {
-                try{
+        if (human.containsKey(id)) {
+            try{
                     HumanBeing humanBeing = new HumanBeing();
-                    humanBeing.setId(human.size() + 1);
+                    humanBeing.setId(id);
                     humanBeing.setCreationDate();
 
                     humanBeing.setName(tokenizer.nextToken());
@@ -59,7 +62,7 @@ public class Update extends Command {
                     }
 
                     str = tokenizer.nextToken();
-                    switch (str){
+                    switch (str.toUpperCase()){
                         case "SADNESS":
                             humanBeing.setMood(Mood.SADNESS);
                             break;
@@ -77,18 +80,18 @@ public class Update extends Command {
                             break;
                     }
 
-                    System.out.println("По настоящему ли крута машина персонажа (true/false): ");
                     humanBeing.setCarCool(Boolean.parseBoolean(tokenizer.nextToken()));
+                    human.put(id, humanBeing);
+                    humanList.setHumanBeings(Converter.convertToList(human));
 
                     try{
-                        Checker.checkHuman(humanList.getHumanBeing(i));
+                        Checker.checkHuman(human.get(id));
+                        dataBase.updateID(humanBeing, id, credentials.getUsername());
                     }catch (HumanValueException e){
                         e.printStackTrace();
                     }
-                } catch(NoSuchElementException e) { System.out.println("Вы не ввели id персонажа. Попытайтесь снова, введя команду заново"); }
-                break;
-            }
+                } catch(NoSuchElementException | SQLException e) { System.out.println("Вы не ввели id персонажа. Попытайтесь снова, введя команду заново"); }
         }
-        return Converter.сonvertToLinkedHashMap(humanList);
+        return human;
     }
 }

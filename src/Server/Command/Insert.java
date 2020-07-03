@@ -1,5 +1,7 @@
 package Server.Command;
 
+import Server.Database.Credentials;
+import Server.Database.DataBase;
 import Server.Exceptions.HumanValueException;
 import Server.MyOwnClasses.HumanBeing;
 import Server.MyOwnClasses.HumanList;
@@ -8,6 +10,7 @@ import Server.Tools.Converter;
 import Server.enums.Mood;
 import Server.enums.WeaponType;
 
+import java.sql.SQLException;
 import java.util.*;
 
 public class Insert extends Command {
@@ -16,7 +19,7 @@ public class Insert extends Command {
     }
 
     @Override
-    public LinkedHashMap<Integer, HumanBeing> execute (LinkedHashMap<Integer, HumanBeing> human, String command, HumanList humanList, boolean b){
+    public LinkedHashMap<Integer, HumanBeing> execute (LinkedHashMap<Integer, HumanBeing> human, String command, HumanList humanList, Credentials credentials, DataBase dataBase, boolean b){
         try {
             StringTokenizer tokenizer = new StringTokenizer(command);
             tokenizer.nextToken();
@@ -86,10 +89,13 @@ public class Insert extends Command {
             }
 
             human.put(Integer.parseInt(humanID), humanBeing);
+            dataBase.insertHumanBeing(humanBeing, Integer.parseInt(humanID), credentials.getUsername());
         } catch (
                 InputMismatchException e) { System.out.println("Введите правильный тип данных. Попытайтесь снова, введя команду заново.");
         } catch(
-                NoSuchElementException e) { System.out.println("Вы не ввели id персонажа. Попытайтесь снова, введя команду заново"); }
+                NoSuchElementException e) { System.out.println("Вы не ввели id персонажа. Попытайтесь снова, введя команду заново"); } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return human;
     }
 }

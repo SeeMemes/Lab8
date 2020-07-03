@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Client.GUI.ClientFrame">
+  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="8" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="1" left="1" bottom="1" right="1"/>
+    <constraints>
+      <xy x="20" y="20" width="1008" height="466"/>
+    </constraints>
+    <properties>
+      <background color="-16"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <scrollpane id="dbbd7" binding="tablePane">
+        <constraints>
+          <grid row="0" column="0" row-span="5" col-span="4" vsize-policy="7" hsize-policy="7" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16"/>
+          <foreground color="-16"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="77672" class="javax.swing.JTable" binding="humanBeingTable">
+            <constraints/>
+            <properties>
+              <autoCreateRowSorter value="false"/>
+              <background color="-16"/>
+              <enabled value="true"/>
+              <gridColor color="-16777216"/>
+              <selectionBackground color="-4856914"/>
+              <showHorizontalLines value="false"/>
+              <showVerticalLines value="false"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
+      <component id="f2232" class="javax.swing.JButton" binding="helpButton">
+        <constraints>
+          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-4856914"/>
+          <text value="Help"/>
+        </properties>
+      </component>
+      <component id="5985b" class="javax.swing.JButton" binding="remove_idButton">
+        <constraints>
+          <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-4856914"/>
+          <text value="Remove by id"/>
+        </properties>
+      </component>
+      <scrollpane id="b6513">
+        <constraints>
+          <grid row="6" column="0" row-span="1" col-span="4" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="44841" class="javax.swing.JTextArea" binding="responseTextArea">
+            <constraints/>
+            <properties>
+              <background color="-16"/>
+              <enabled value="true"/>
+              <font name="Consolas" size="12"/>
+              <foreground color="-16777216"/>
+              <lineWrap value="false"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
+      <component id="1973" class="javax.swing.JButton" binding="drawObjects">
+        <constraints>
+          <grid row="7" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-4856914"/>
+          <text value="Draw objects"/>
+        </properties>
+      </component>
+      <component id="25fb" class="javax.swing.JButton" binding="refreshButton">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-4856914"/>
+          <font name="Lobster" size="24"/>
+          <text value="Refresh"/>
+        </properties>
+      </component>
+      <component id="c53dd" class="javax.swing.JRadioButton" binding="autoRefreshRadioButton" default-binding="true">
+        <constraints>
+          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16"/>
+          <enabled value="true"/>
+          <font name="Lobster" size="24"/>
+          <text value="Auto-Refresh"/>
+        </properties>
+      </component>
+      <component id="a00bc" class="javax.swing.JButton" binding="printFieldDescendingMoodButton" default-binding="true">
+        <constraints>
+          <grid row="2" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-4856914"/>
+          <text value="Print field descending mood"/>
+        </properties>
+      </component>
+      <component id="dc208" class="javax.swing.JButton" binding="addButton">
+        <constraints>
+          <grid row="6" column="4" row-span="2" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="92" height="72"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-4856914"/>
+          <text value="Add"/>
+          <verticalAlignment value="0"/>
+        </properties>
+      </component>
+      <component id="889f9" class="javax.swing.JButton" binding="clearButton" default-binding="true">
+        <constraints>
+          <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-4856914"/>
+          <text value="Clear"/>
+        </properties>
+      </component>
+      <component id="ff7d2" class="javax.swing.JButton" binding="removeSelectedButton" default-binding="true">
+        <constraints>
+          <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-4856914"/>
+          <text value="Remove selected"/>
+        </properties>
+      </component>
+      <component id="f79db" class="javax.swing.JButton" binding="replaceIfLowerButton" default-binding="true">
+        <constraints>
+          <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-4856914"/>
+          <text value="Replace if lower"/>
+        </properties>
+      </component>
+      <component id="ac533" class="javax.swing.JButton" binding="sumOfImpactSpeedButton" default-binding="true">
+        <constraints>
+          <grid row="3" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-4856914"/>
+          <text value="Sum of impact speed"/>
+        </properties>
+      </component>
+      <component id="2e085" class="javax.swing.JButton" binding="removeLowerKeyButton" default-binding="true">
+        <constraints>
+          <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-4856914"/>
+          <text value="Remove lower key"/>
+        </properties>
+      </component>
+      <component id="4228f" class="javax.swing.JButton" binding="averageOfImpactSpeedButton" default-binding="true">
+        <constraints>
+          <grid row="4" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-4856914"/>
+          <text value="Average of impact speed"/>
+        </properties>
+      </component>
+      <component id="29ab" class="javax.swing.JButton" binding="removeGreaterKeyButton" default-binding="true">
+        <constraints>
+          <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-4856914"/>
+          <text value="Remove greater key"/>
+        </properties>
+      </component>
+      <component id="be70" class="javax.swing.JButton" binding="sendCommandButton" default-binding="true">
+        <constraints>
+          <grid row="5" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-12503963"/>
+          <font/>
+          <foreground color="-1"/>
+          <text value="Send command"/>
+        </properties>
+      </component>
+      <component id="99802" class="javax.swing.JTextField" binding="commandTextField">
+        <constraints>
+          <grid row="5" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Consolas" size="16"/>
+        </properties>
+      </component>
+      <component id="ecfc7" class="javax.swing.JTextArea" binding="usernameTextArea">
+        <constraints>
+          <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-12374744"/>
+          <editable value="false"/>
+          <font name="Lobster" size="24"/>
+          <foreground color="-16"/>
+          <lineWrap value="false"/>
+        </properties>
+      </component>
+      <component id="7e077" class="javax.swing.JTextArea" binding="commandLineTextArea" default-binding="true">
+        <constraints>
+          <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16"/>
+          <font name="Lobster" size="24"/>
+          <foreground color="-12374744"/>
+          <text value="Command line:"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
